@@ -722,6 +722,13 @@
   dependencies:
     debug "^4.3.7"
 
+"@sveltejs/vite-plugin-svelte-inspector@^5.0.0":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@sveltejs/vite-plugin-svelte-inspector/-/vite-plugin-svelte-inspector-5.0.1.tgz#3d35254b76e07551ea8921029a96d99b94ffbc5c"
+  integrity sha512-ubWshlMk4bc8mkwWbg6vNvCeT7lGQojE3ijDh3QTR6Zr/R+GXxsGbyH4PExEPpiFmqPhYiVSVmHBjUcVc1JIrA==
+  dependencies:
+    debug "^4.4.1"
+
 "@sveltejs/vite-plugin-svelte@^5.1.1":
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/@sveltejs/vite-plugin-svelte/-/vite-plugin-svelte-5.1.1.tgz#4db3b0475190a7148ad8740259ad57081bcfccbc"
@@ -733,6 +740,17 @@
     kleur "^4.1.5"
     magic-string "^0.30.17"
     vitefu "^1.0.6"
+
+"@sveltejs/vite-plugin-svelte@^6.2.1":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@sveltejs/vite-plugin-svelte/-/vite-plugin-svelte-6.2.1.tgz#3414c10aaacce8f23a8db2a37926da00ab7a78cb"
+  integrity sha512-YZs/OSKOQAQCnJvM/P+F1URotNnYNeU3P2s4oIpzm1uFaqUEqRxUB0g5ejMjEb5Gjb9/PiBI5Ktrq4rUUF8UVQ==
+  dependencies:
+    "@sveltejs/vite-plugin-svelte-inspector" "^5.0.0"
+    debug "^4.4.1"
+    deepmerge "^4.3.1"
+    magic-string "^0.30.17"
+    vitefu "^1.1.1"
 
 "@swc/helpers@^0.5.12":
   version "0.5.17"
