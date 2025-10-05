@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
 	let currentSlide = 0;
-	export let images = [];
+	export let images: { src: string; alt: string }[] = [];
 
 	function nextSlide() {
 		currentSlide = (currentSlide + 1) % images.length;
@@ -15,7 +15,7 @@
 	<div class="slides" style="transform: translateX(-{currentSlide * 100}%);">
 		{#each images as image, i}
 			<div class="slide">
-				<img src={image} alt="Carousel slide {i + 1}" />
+				<img src={image.src} alt={image.alt} />
 			</div>
 		{/each}
 	</div>
