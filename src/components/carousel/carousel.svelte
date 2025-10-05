@@ -11,19 +11,42 @@
 		if (images.length === 0) return;
 		currentSlide = (currentSlide - 1 + images.length) % images.length;
 	}
+
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.key === 'ArrowRight') {
+			nextSlide();
+		} else if (event.key === 'ArrowLeft') {
+			prevSlide();
+		}
+	}
 </script>
 
-<div class="carousel">
-	<div class="slides" style="transform: translateX(-{currentSlide * 100}%);">
-		{#each images as image (image.src)}
-			<div class="slide">
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+<div
+	class="carousel"
+	on:keydown={handleKeydown}
+	tabindex="0"
+	role="region"
+	aria-roledescription="carousel"
+>
+	<div class="slides" style="transform: translateX(-{currentSlide * 100}%);" aria-live="polite">
+		{#each images as image, i (image.src)}
+			<div
+				class="slide"
+				role="group"
+				aria-roledescription="slide"
+				aria-label="{i + 1} of {images.length}"
+			>
 				<img src={image.src} alt={image.alt} />
 			</div>
 		{/each}
 	</div>
 
-	<button class="prev" on:click={prevSlide} aria-label="Previous slide">&#10094;</button>
-	<button class="next" on:click={nextSlide} aria-label="Next slide">&#10095;</button>
+	{#if images.length > 1}
+		<button class="prev" on:click={prevSlide} aria-label="Previous slide">&#10094;</button>
+		<button class="next" on:click={nextSlide} aria-label="Next slide">&#10095;</button>
+	{/if}
 </div>
 
 <style>
