@@ -3,17 +3,19 @@
 	export let images: { src: string; alt: string }[] = [];
 
 	function nextSlide() {
+		if (images.length === 0) return;
 		currentSlide = (currentSlide + 1) % images.length;
 	}
 
 	function prevSlide() {
+		if (images.length === 0) return;
 		currentSlide = (currentSlide - 1 + images.length) % images.length;
 	}
 </script>
 
 <div class="carousel">
 	<div class="slides" style="transform: translateX(-{currentSlide * 100}%);">
-		{#each images as image, i}
+		{#each images as image (image.src)}
 			<div class="slide">
 				<img src={image.src} alt={image.alt} />
 			</div>
