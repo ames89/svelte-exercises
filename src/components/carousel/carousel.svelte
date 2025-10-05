@@ -1,11 +1,6 @@
 <script>
 	let currentSlide = 0;
-	const images = [
-		'https://picsum.photos/id/237/600/400',
-		'https://picsum.photos/id/238/600/400',
-		'https://picsum.photos/id/239/600/400',
-		'https://picsum.photos/id/240/600/400'
-	];
+	export let images = [];
 
 	function nextSlide() {
 		currentSlide = (currentSlide + 1) % images.length;

@@ -1,5 +1,13 @@
 ---
 import Carousel from './carousel.svelte';
+
+const myImageData = [
+	'https://picsum.photos/id/237/600/400',
+	'https://picsum.photos/id/238/600/400',
+	'https://picsum.photos/id/239/600/400',
+	'https://picsum.photos/id/240/600/400',
+	'https://picsum.photos/id/241/600/400'
+];
 ---
 
-<Carousel client:load />
+<Carousel images={myImageData} client:load />
