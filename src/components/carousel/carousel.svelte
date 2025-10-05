@@ -8,7 +8,6 @@
 	];
 
 	function nextSlide() {
-		console.log('nextSlide');
 		currentSlide = (currentSlide + 1) % images.length;
 	}
 
@@ -26,15 +25,15 @@
 		{/each}
 	</div>
 
-	<button class="prev" on:click={prevSlide}>&#10094;</button>
-	<button class="next" on:click={nextSlide}>&#10095;</button>
+	<button class="prev" on:click={prevSlide} aria-label="Previous slide">&#10094;</button>
+	<button class="next" on:click={nextSlide} aria-label="Next slide">&#10095;</button>
 </div>
 
 <style>
 	.carousel {
 		position: relative;
-		width: 600px;
-		height: 400px;
+		width: var(--carousel-width, 600px);
+		height: var(--carousel-height, 400px);
 		overflow: hidden;
 		margin: 2rem auto;
 		border-radius: 10px;
