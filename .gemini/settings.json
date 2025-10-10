@@ -1,0 +1,10 @@
+{
+	"mcpServers": {
+		"svelte": {
+			"httpUrl": "https://mcp.svelte.dev/mcp"
+		},
+		"Astro docs": {
+			"httpUrl": "https://mcp.docs.astro.build/mcp"
+		}
+	}
+}

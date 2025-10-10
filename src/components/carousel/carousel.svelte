@@ -1,6 +1,6 @@
 <script lang="ts">
-	let currentSlide = 0;
-	export let images: { src: string; alt: string }[] = [];
+	let currentSlide = $state(0);
+	let { images = [] }: { images: { src: string; alt: string }[] } = $props();
 
 	function nextSlide() {
 		if (images.length === 0) return;
@@ -25,15 +25,8 @@
 	}
 </script>
 
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-<div
-	class="carousel"
-	on:keydown={handleKeydown}
-	tabindex="0"
-	role="region"
-	aria-roledescription="carousel"
->
+<div class="carousel" onkeydown={handleKeydown} role="region" aria-roledescription="carousel">
 	<div class="slides" style="transform: translateX(-{currentSlide * 100}%);" aria-live="polite">
 		{#each images as image, i (image.src)}
 			<div
@@ -48,14 +41,14 @@
 	</div>
 
 	{#if images.length > 1}
-		<button class="prev" on:click={prevSlide} aria-label="Previous slide">&#10094;</button>
-		<button class="next" on:click={nextSlide} aria-label="Next slide">&#10095;</button>
+		<button class="prev" onclick={prevSlide} aria-label="Previous slide">&#10094;</button>
+		<button class="next" onclick={nextSlide} aria-label="Next slide">&#10095;</button>
 		<div class="dots">
 			{#each images as _, i (i)}
 				<button
 					class="dot"
 					class:active={currentSlide === i}
-					on:click={() => goToSlide(i)}
+					onclick={() => goToSlide(i)}
 					aria-label="Go to slide {i + 1}"
 				></button>
 			{/each}
