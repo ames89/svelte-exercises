@@ -29,7 +29,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "yarn install;npx --yes https://github.com/google-gemini/gemini-cli"
+	"postCreateCommand": "yarn install;npm install -g @google/gemini-cli"
 
 	// Configure tool-specific properties.
 	// "customizations": {},
