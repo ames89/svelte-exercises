@@ -1,10 +1,128 @@
 ---
-import Carousel from '../components/carousel/index.astro';
+import { clubData } from "../lib/data";
+import Header from "../components/Header.svelte";
+import Hero from "../components/Hero.svelte";
+import AboutUs from "../components/AboutUs.svelte";
+import Trainers from "../components/Trainers.svelte";
+import Achievements from "../components/Achievements.svelte";
+import Athletes from "../components/Athletes.svelte";
+import Gallery from "../components/Gallery.svelte";
+import Partners from "../components/Partners.svelte";
+import JoinUs from "../components/JoinUs.svelte";
+import Contact from "../components/Contact.svelte";
+import Footer from "../components/Footer.svelte";
+import FixedSocialBar from "../components/FixedSocialBar.svelte";
+import GalleryModal from "../components/GalleryModal.svelte";
+import FadeInSection from "../components/FadeInSection.svelte";
+
+let modalState = {
+    isOpen: false,
+    albumIndex: 0,
+    photoIndex: 0,
+  };
 ---
+<script define:vars={{ clubData }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const gallery = document.getElementById("gallery");
+    const galleryModal = document.getElementById("gallery-modal");
 
-<div id="container">
-	<Carousel />
-</div>
+    let modalState = {
+      isOpen: false,
+      albumIndex: 0,
+      photoIndex: 0,
+    };
 
-<style>
-</style>
+    function updateModal() {
+      galleryModal.setAttribute('modalState', JSON.stringify(modalState));
+    }
+
+    const openModal = (e) => {
+      modalState = { isOpen: true, ...e.detail };
+      document.body.classList.add("no-scroll");
+      updateModal();
+    };
+
+    const closeModal = () => {
+      modalState = { isOpen: false, albumIndex: 0, photoIndex: 0 };
+      document.body.classList.remove("no-scroll");
+      updateModal();
+    };
+
+    const nextPhoto = () => {
+      const album = clubData.galeria[modalState.albumIndex];
+      if (!album) return;
+      const nextIndex = modalState.photoIndex + 1;
+      if (nextIndex < album.fotos.length) {
+        modalState = { ...modalState, photoIndex: nextIndex };
+        updateModal();
+      }
+    };
+
+    const prevPhoto = () => {
+      const prevIndex = modalState.photoIndex - 1;
+      if (prevIndex >= 0) {
+        modalState = { ...modalState, photoIndex: prevIndex };
+        updateModal();
+      }
+    };
+
+    const handleKeyDown = (e) => {
+      if (!modalState.isOpen) return;
+      if (e.key === "Escape") closeModal();
+      if (e.key === "ArrowLeft") prevPhoto();
+      if (e.key === "ArrowRight") nextPhoto();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    gallery.addEventListener("albumClick", openModal);
+    galleryModal.addEventListener("close", closeModal);
+    galleryModal.addEventListener("next", nextPhoto);
+    galleryModal.addEventListener("prev", prevPhoto);
+
+    // Initial state
+    updateModal();
+  });
+</script>
+
+<Header />
+<main>
+  <Hero />
+  <FadeInSection id="acerca-de-nosotros">
+    <AboutUs />
+  </FadeInSection>
+  <FadeInSection id="entrenadores" className="section-bg-blue">
+    <Trainers client:only="svelte" />
+  </FadeInSection>
+  <FadeInSection id="logros">
+    <Achievements client:only="svelte" />
+  </FadeInSection>
+  <FadeInSection id="atletas-destacados" className="section-bg-blue">
+    <Athletes client:only="svelte" />
+  </FadeInSection>
+  <FadeInSection id="galeria" className="gallery-section">
+    <Gallery id="gallery" client:only="svelte" />
+  </FadeInSection>
+  <FadeInSection
+    id="avales"
+    className="section-bg-blue logo-carousel-section">
+    <Partners
+      partners={clubData.avales}
+      title="Quiénes nos avalan"
+      gridClassName="avales-grid logo-grid" client:only="svelte" />
+  </FadeInSection>
+  <FadeInSection id="aliados" className="logo-carousel-section">
+    <Partners
+      partners={clubData.aliados}
+      title="Aliados"
+      gridClassName="avales-grid logo-grid" client:only="svelte" />
+  </FadeInSection>
+  <FadeInSection id="inscripcion" className="section-bg-blue">
+    <JoinUs />
+  </FadeInSection>
+  <FadeInSection id="contacto">
+    <Contact />
+  </FadeInSection>
+</main>
+<Footer />
+<FixedSocialBar />
+<GalleryModal id="gallery-modal" modalState={modalState} />
