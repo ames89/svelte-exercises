@@ -84,23 +84,23 @@ let modalState = {
   });
 </script>
 
-<Header />
+<Header client:load />
 <main>
-  <Hero />
-  <FadeInSection id="acerca-de-nosotros">
-    <AboutUs />
+  <Hero client:load />
+  <FadeInSection id="acerca-de-nosotros" client:load>
+    <AboutUs client:load/>
   </FadeInSection>
-  <FadeInSection id="entrenadores" className="section-bg-blue">
-    <Trainers client:only="svelte" />
+  <FadeInSection client:load id="entrenadores" className="section-bg-blue">
+    <Trainers client:load />
   </FadeInSection>
-  <FadeInSection id="logros">
-    <Achievements client:only="svelte" />
+  <FadeInSection  client:load id="logros">
+    <Achievements client:load client:load />
   </FadeInSection>
-  <FadeInSection id="atletas-destacados" className="section-bg-blue">
-    <Athletes client:only="svelte" />
+  <FadeInSection client:load id="atletas-destacados" className="section-bg-blue">
+    <Athletes client:load />
   </FadeInSection>
-  <FadeInSection id="galeria" className="gallery-section">
-    <Gallery id="gallery" client:only="svelte" />
+  <FadeInSection client:load id="galeria" className="gallery-section">
+    <Gallery id="gallery" client:load />
   </FadeInSection>
   <FadeInSection
     id="avales"
@@ -108,18 +108,18 @@ let modalState = {
     <Partners
       partners={clubData.avales}
       title="Quiénes nos avalan"
-      gridClassName="avales-grid logo-grid" client:only="svelte" />
+      gridClassName="avales-grid logo-grid" client:load />
   </FadeInSection>
-  <FadeInSection id="aliados" className="logo-carousel-section">
+  <FadeInSection client:load id="aliados" className="logo-carousel-section">
     <Partners
       partners={clubData.aliados}
       title="Aliados"
-      gridClassName="avales-grid logo-grid" client:only="svelte" />
+      gridClassName="avales-grid logo-grid" client:load />
   </FadeInSection>
-  <FadeInSection id="inscripcion" className="section-bg-blue">
+  <FadeInSection client:load id="inscripcion" className="section-bg-blue">
     <JoinUs />
   </FadeInSection>
-  <FadeInSection id="contacto">
+  <FadeInSection client:load id="contacto">
     <Contact />
   </FadeInSection>
 </main>
