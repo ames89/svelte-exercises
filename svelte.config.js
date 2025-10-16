@@ -1,10 +1,9 @@
 import { vitePreprocess } from '@astrojs/svelte';
 
-const config = {
+export default {
 	preprocess: vitePreprocess(),
 	compilerOptions: {
-		runes: true
+		runes: true,
+		dev: true,
 	}
 };
-
-export default config;
