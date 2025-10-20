@@ -52,7 +52,13 @@
 				acc[tweet.status].push(tweet);
 				return acc;
 			},
-			Object.fromEntries(statuses.map((status) => [status, []])) as Record<Status, Tweet[]>
+			statuses.reduce(
+				(acc, status) => {
+					acc[status] = [];
+					return acc;
+				},
+				{} as Record<Status, Tweet[]>
+			)
 		)
 	);
 
@@ -81,7 +87,7 @@
 	</div>
 	<div class="kanban-board">
 		{#each statuses as status}
-			<div class="column" ondragover={handleDragOver} ondrop={() => handleDrop(status)}>
+			<div class="column" role="list" aria-label={status} ondragover={handleDragOver} ondrop={() => handleDrop(status)} tabindex="-1">
 				<h2>
 					{status
 						.split('-')
@@ -90,7 +96,7 @@
 				</h2>
 				<div class="cards">
 					{#each tweetsByStatus[status] as tweet (tweet.id)}
-						<div draggable="true" ondragstart={() => handleDragStart(tweet)}>
+						<div role="listitem" tabindex="-1" draggable="true" ondragstart={() => handleDragStart(tweet)}>
 							<TwitterCard title={tweet.title} content={tweet.content} />
 						</div>
 					{/each}
