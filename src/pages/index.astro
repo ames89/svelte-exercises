@@ -1,11 +1,30 @@
 ---
-import Landing from '../components/Landing.svelte';
-import Layout from '../layouts/Layout.astro';
+import CounterButton from 'components/atoms/CounterButton/CounterButton.svelte'
+import RootLayout from 'components/layouts/RootLayout/RootLayout.astro'
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import S from './_styles.module.css'
 ---
 
-<Layout>
-	<Landing client:load />
-</Layout>
+<RootLayout title="Boilerplate" description="Boilerplate Astro.js + Solid.js">
+  <div class={S.container}>
+    <header class={S.header}>Boilerplate</header>
+    <main class={S.main}>
+      <div class={S.wrapper_images}>
+        <img
+          alt="Logo Astro.js"
+          height={77}
+          src="/images/logo_astro.svg"
+          width={77}
+        />
+        <img
+          alt="Logo Svelte"
+          height={77}
+          src="/images/logo_svelte.svg"
+          width={87}
+        />
+      </div>
+      <h1 class={S.title}>Astro.js + Svelte</h1>
+      <CounterButton client:load />
+    </main>
+  </div>
+</RootLayout>
