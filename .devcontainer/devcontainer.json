@@ -7,7 +7,6 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"ardenivanov.svelte-intellisense",
 				"astro-build.astro-vscode",
 				"dbaeumer.vscode-eslint",
 				"eamodio.gitlens",
@@ -16,8 +15,7 @@
 				"GitHub.copilot",
 				"google.gemini-cli-vscode-ide-companion",
 				"google.geminicodeassist",
-				"Gxl.git-graph-3",
-				"svelte.svelte-vscode"
+				"Gxl.git-graph-3"
 			]
 		}
 	},
@@ -29,7 +27,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "pnpm install;npm install -g @google/gemini-cli"
+	"postCreateCommand": "npm install -g @google/gemini-cli"
 
 	// Configure tool-specific properties.
 	// "customizations": {},
