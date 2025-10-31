@@ -1,20 +1,26 @@
-import { useState, useMemo } from 'react';
-import { Column as ColumnType, TwitterMessage } from './types/twitter';
-import { Column } from './components/Column';
-import { mockMessages } from './data/mockMessages';
-import { Button } from './components/ui/button';
-import { Plus } from 'lucide-react';
-import { Input } from './components/ui/input';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './components/ui/dialog';
+import { useState, useMemo } from "react";
+import { Column as ColumnType, TwitterMessage } from "./types/twitter";
+import { Column } from "./components/Column";
+import { mockMessages } from "./data/mockMessages";
+import { Button } from "./components/ui/button";
+import { Plus } from "lucide-react";
+import { Input } from "./components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./components/ui/dialog";
 
 function App() {
   const [columns, setColumns] = useState<ColumnType[]>([
-    { id: '1', title: 'All Messages', filter: '' },
-    { id: '2', title: 'Earthquakes', filter: '#sismo' },
-    { id: '3', title: 'Weather', filter: '#weather' },
+    { id: "1", title: "All Messages", filter: "" },
+    { id: "2", title: "Earthquakes", filter: "#sismo" },
+    { id: "3", title: "Weather", filter: "#weather" },
   ]);
 
-  const [newColumnTitle, setNewColumnTitle] = useState('');
+  const [newColumnTitle, setNewColumnTitle] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const addColumn = () => {
@@ -22,10 +28,10 @@ function App() {
       const newColumn: ColumnType = {
         id: Date.now().toString(),
         title: newColumnTitle,
-        filter: '',
+        filter: "",
       };
       setColumns([...columns, newColumn]);
-      setNewColumnTitle('');
+      setNewColumnTitle("");
       setIsDialogOpen(false);
     }
   };
@@ -35,9 +41,9 @@ function App() {
   };
 
   const updateColumnFilter = (id: string, filter: string) => {
-    setColumns(columns.map((col) => 
-      col.id === id ? { ...col, filter } : col
-    ));
+    setColumns(
+      columns.map((col) => (col.id === id ? { ...col, filter } : col)),
+    );
   };
 
   const getFilteredMessages = (filter: string): TwitterMessage[] => {
@@ -48,10 +54,12 @@ function App() {
     const lowerFilter = filter.toLowerCase();
     return mockMessages.filter((message) => {
       const contentLower = message.content.toLowerCase();
-      const tagsLower = message.tags?.map(tag => tag.toLowerCase()) || [];
-      
-      return contentLower.includes(lowerFilter) || 
-             tagsLower.some(tag => tag.includes(lowerFilter.replace('#', '')));
+      const tagsLower = message.tags?.map((tag) => tag.toLowerCase()) || [];
+
+      return (
+        contentLower.includes(lowerFilter) ||
+        tagsLower.some((tag) => tag.includes(lowerFilter.replace("#", "")))
+      );
     });
   };
 
@@ -61,7 +69,9 @@ function App() {
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h1 className="text-white mb-1">X Message Filter Board</h1>
-          <p className="text-gray-400">Organize and filter your X messages in customizable columns</p>
+          <p className="text-gray-400">
+            Organize and filter your X messages in customizable columns
+          </p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
@@ -72,7 +82,9 @@ function App() {
           </DialogTrigger>
           <DialogContent className="bg-gray-900 border-gray-800">
             <DialogHeader>
-              <DialogTitle className="text-white">Create New Column</DialogTitle>
+              <DialogTitle className="text-white">
+                Create New Column
+              </DialogTitle>
             </DialogHeader>
             <div className="space-y-4 mt-4">
               <div>
@@ -82,11 +94,11 @@ function App() {
                   placeholder="Enter column title..."
                   value={newColumnTitle}
                   onChange={(e) => setNewColumnTitle(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && addColumn()}
+                  onKeyDown={(e) => e.key === "Enter" && addColumn()}
                   className="bg-gray-950 border-gray-700 text-white placeholder:text-gray-500"
                 />
               </div>
-              <Button 
+              <Button
                 onClick={addColumn}
                 className="w-full bg-blue-500 hover:bg-blue-600 text-white"
               >
@@ -98,7 +110,10 @@ function App() {
       </div>
 
       {/* Columns Container */}
-      <div className="flex gap-4 overflow-x-auto pb-4" style={{ height: 'calc(100vh - 180px)' }}>
+      <div
+        className="flex gap-4 overflow-x-auto pb-4"
+        style={{ height: "calc(100vh - 180px)" }}
+      >
         {columns.map((column) => (
           <Column
             key={column.id}
@@ -112,8 +127,10 @@ function App() {
         {columns.length === 0 && (
           <div className="flex-1 flex items-center justify-center">
             <div className="text-center">
-              <p className="text-gray-400 mb-4">No columns yet. Add your first column to get started!</p>
-              <Button 
+              <p className="text-gray-400 mb-4">
+                No columns yet. Add your first column to get started!
+              </p>
+              <Button
                 onClick={() => setIsDialogOpen(true)}
                 className="bg-blue-500 hover:bg-blue-600 text-white"
               >
