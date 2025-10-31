@@ -1,4 +1,4 @@
-import { TwitterMessage, Column as ColumnType } from '../types/twitter';
+import { type TwitterMessage, type Column as ColumnType } from '../types/twitter';
 import { TwitterCard } from './TwitterCard';
 import { Input } from './ui/input';
 import { X, GripVertical } from 'lucide-react';

@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react";
-import { Column as ColumnType, TwitterMessage } from "./types/twitter";
+import React, { useState, useMemo } from "react";
+import type { Column as ColumnType, TwitterMessage } from "./types/twitter";
 import { Column } from "./components/Column";
 import { mockMessages } from "./data/mockMessages";
 import { Button } from "./components/ui/button";

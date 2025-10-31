@@ -1,4 +1,4 @@
-import { TwitterMessage } from '../types/twitter';
+import { type TwitterMessage } from '../types/twitter';
 import { MessageCircle, Repeat2, Heart, BarChart3, Bookmark, Share, Play } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 

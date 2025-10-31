@@ -1,4 +1,4 @@
-import { TwitterMessage } from '../types/twitter';
+import { type TwitterMessage } from '../types/twitter';
 
 export const mockMessages: TwitterMessage[] = [
   {
